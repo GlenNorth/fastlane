@@ -1,6 +1,7 @@
 describe Scan do
   describe Scan::XCPrettyReporterOptionsGenerator do
     before(:all) do
+      skip "Requires `xcodebuild` to be installed which is not possible on this platform" unless FastlaneCore::Helper.is_mac?
       options = { project: "./scan/examples/standard/app.xcodeproj" }
       Scan.config = FastlaneCore::Configuration.create(Scan::Options.available_options, options)
       Scan.cache[:temp_junit_report] = nil
